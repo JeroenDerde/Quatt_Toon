@@ -1,0 +1,46 @@
+{
+  "time": {
+    "ts": 1700483737705,
+    "tsHuman": "2023-11-20T12:35:37.718Z"
+  },
+  "hp1": {
+    "modbusSlaveId": 1,
+    "getMainWorkingMode": 2,
+    "temperatureOutside": 12.34,
+    "temperatureWaterIn": 26.42,
+    "temperatureWaterOut": 28.69,
+    "powerInput": 320.162156,
+    "power": 2106.616067,
+    "silentModeStatus": false,
+    "limitedByCop": false
+  },
+  "hp2": null,
+  "boiler": {
+    "otFbChModeActive": null,
+    "otFbDhwActive": null,
+    "otFbFlameOn": null,
+    "otFbSupplyInletTemperature": null,
+    "otFbSupplyOutletTemperature": null,
+    "otTbCH": false,
+    "oTtbTurnOnOffBoilerOn": false
+  },
+  "flowMeter": {
+    "waterSupplyTemperature": 27.60648209718669,
+    "flowRate": 803.091938
+  },
+  "thermostat": {
+    "otFtChEnabled": true,
+    "otFtDhwEnabled": true,
+    "otFtCoolingEnabled": false,
+    "otFtControlSetpoint": 34,
+    "otFtRoomSetpoint": 20,
+    "otFtRoomTemperature": 19.878906
+  },
+  "qc": {
+    "supervisoryControlMode": 2,
+    "stickyPumpProtectionEnabled": false
+  },
+  "system": {
+    "hostName": "CIC-<GUID>"
+  }
+}
