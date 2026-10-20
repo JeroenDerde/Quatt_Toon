@@ -9,7 +9,9 @@ Tile {
 	property bool showPrice:false;
 
 	onClicked: {
-		getQuatt()	
+		if (app.quattConfigurationScreen) {
+			app.quattConfigurationScreen.show()
+		}
 	}
 
    
@@ -31,7 +33,7 @@ Tile {
 
     Text {
 		id: title
-		text: "Wacht op Quatt"
+		text: app.quattStatus !== "" ? app.quattStatus : app.quattUpdatedAt
 		width: parent.width-20
 		wrapMode: Text.WordWrap
 		anchors {
@@ -46,7 +48,7 @@ Tile {
 
     Text {
 		id: hp1temperatureOutside
-		text:  ""
+		text: app.quattOutsideTemperature
 		anchors {
 			bottom: parent.bottom
 			bottomMargin: isNxt? 4:3
@@ -55,13 +57,12 @@ Tile {
 		}
 		font.pixelSize: isNxt? 20:16
 		font.family: qfont.bold.name
-		font.strikeout: true
 		visible: !dimState
     }
 
     Text {
 		id: dimmedCOP
-		text:  ""
+		text: app.quattCop === "" ? "" : "COP " + app.quattCop
 		anchors {
 			horizontalCenter: parent.horizontalCenter
 			bottom: parent.bottom
@@ -73,43 +74,14 @@ Tile {
 		visible: dimState
     }
 
-    function getQuatt(){
-        if (debugOutput) console.log("*********QUATT Start getQuatt")
-        
-		var http = new XMLHttpRequest()
-        var siteURL = "https://www.ibood.com/offers/nl/s-nl?" + Math.random()*Math.random();
-        var xhr = new XMLHttpRequest();
-            xhr.open("GET", siteURL, true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4) {
-                    var parseString = xhr.responseText;
-                                    
-                    var quattState = JSON.parse(parseString);
-					
-					
-
-                    scrapeTimer.interval = 30000
-                    
-                    if (debugOutput) console.log("*********QUATT " + "Scraper Interval: " + scrapeInterval)
-
-                    title.text =  quattState.time.tsHuman
-
-                    hp1temperatureOutside.text = quattState.hp1.temperatureOutside
-                                     
-					hp1DimmedCOP.text = "0"
-                }
-            }
-            xhr.send();    
-	}
-
     Timer {
 		id: scrapeTimer
 		interval: 30000
 		repeat: true
 		running: true
-		triggeredOnStart: false
+		triggeredOnStart: true
 		onTriggered: {
-			getQuatt()
+			app.getQuatt()
 		}
    }
 

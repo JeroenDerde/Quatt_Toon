@@ -1,4 +1,6 @@
+0.0.2
+- Connect to the Quatt JSON endpoint configured on the Toon
+
 0.0.1
 - first attempt
-
 
